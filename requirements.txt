@@ -1,0 +1,4 @@
+dbt-bigquery==1.7.2
+dbt-core==1.7.3
+dbt-duckdb==1.7.1
+duckdb==0.9.2

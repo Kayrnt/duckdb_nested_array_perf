@@ -1,0 +1,22 @@
+nested_array_perf:
+  outputs:
+    dev_duckdb:
+      type: duckdb
+      path: dev.duckdb
+      threads: 4
+
+    dev_bigquery:
+      method: "{{ env_var('METHOD', 'oauth') }}"
+      project: "{{ env_var('PROJECT', 'change-me-with-project') }}"
+      execution_project: "{{ env_var('EXECUTION_PROJECT', 'change-me-with-execution-project') }}"
+      dataset: "{{ env_var('DATASET', 'change-me-with-dataset') }}"
+      keyfile: "{{ env_var('GOOGLE_APPLICATION_CREDENTIALS') }}"
+      location: "{{ env_var('LOCATION', 'US') }}"
+      priority: interactive
+      retries: 0
+      threads: 4
+      timeout_seconds: 1000000
+      type: bigquery
+
+  target: dev_duckdb
+  

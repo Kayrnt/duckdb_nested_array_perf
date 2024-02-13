@@ -1,0 +1,9 @@
+
+target/
+dbt_packages/
+logs/
+
+fact_table_1M/
+*.parquet
+.vscode
+dev.duckdb
