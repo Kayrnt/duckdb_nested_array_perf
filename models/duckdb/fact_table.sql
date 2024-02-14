@@ -3,22 +3,22 @@
         materialized='table'
     )
 }}
-{# {% set name = './fact_table_' ~ 10 ** (var('exponent_scale') - 3)  ~ 'k.parquet' %} #}
-{# {% set name = './fact_table_1M/*.parquet' %}
-select * FROM read_parquet('{{ name }}') #}
-
-{% call set_sql_header(config) %}
+{%- call set_sql_header(config) %}
 SET memory_limit = '15GB';
 PRAGMA temp_directory='/tmp/tmp.tmp';
-{% endcall %}
-
+{%- endcall %}
+{%- set rows_count = 10 ** var('exponent_scale') %}
 WITH 
+all_rows AS (
+  SELECT
+    GENERATE_SERIES(1, {{ rows_count }}) AS id
+),
 array_id_int AS (
   SELECT 
       id,
       CAST(CAST(id AS INTEGER) % CAST({{ var('array_size_max') }} AS INTEGER) AS INTEGER) array_size,
       GENERATE_SERIES(0, array_size, 1) array_sample
-  FROM {{ ref('all_rows')}}
+  FROM all_rows
 )
 SELECT
     CURRENT_TIMESTAMP AS hour,
