@@ -3,7 +3,7 @@
         materialized='table',
     )
 }}
-SELECT *,
+SELECT * EXCEPT(col15),
 ARRAY(
 SELECT as struct st.id, st.bar
 FROM UNNEST(col15) c

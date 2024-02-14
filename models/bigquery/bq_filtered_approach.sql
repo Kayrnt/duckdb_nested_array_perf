@@ -13,7 +13,7 @@ FROM {{ ref('bq_dimension_table') }} st
 JOIN fact_table_col15_name_values v ON st.name = v.name
 )
 select
-*,
+* EXCEPT(col15),
 ARRAY(
 SELECT as struct st.id, st.bar
 FROM UNNEST(col15) c

@@ -26,7 +26,7 @@ FROM {{ ref('dimension_table') }} st
 JOIN fact_table_col15_name_values v ON st.name = v.name
 )
 SELECT
-  *,
+  * exclude(col15),
   ARRAY(
     SELECT 
       {'id': st.id, 'bar': st.bar}

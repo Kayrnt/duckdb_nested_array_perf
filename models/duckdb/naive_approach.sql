@@ -11,7 +11,7 @@ SET enable_profiling = 'query_tree_optimizer';
 {% endcall %}
 
 SELECT
-  *,
+  * exclude(col15),
   ARRAY(
     SELECT
       {'id': st.id, 'bar': st.bar}
