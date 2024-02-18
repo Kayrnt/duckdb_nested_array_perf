@@ -8,7 +8,7 @@
 -- PRAGMA enable_profiling;
 -- SET enable_profiling = 'json';
 -- SET enable_profiling = 'query_tree_optimizer';
-SET memory_limit = '15GB';
+-- SET memory_limit = '15GB';
 PRAGMA temp_directory='/tmp/tmp.tmp';
 {% endcall %}
 

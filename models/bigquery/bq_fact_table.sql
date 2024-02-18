@@ -16,7 +16,7 @@ array_with_id AS (
 array_with_size AS (
 SELECT 
     id, array_size,
-    GENERATE_ARRAY(0, array_size, 1) array_sample
+    GENERATE_ARRAY(1, array_size, 1) array_sample
 FROM array_with_id
 )
 SELECT

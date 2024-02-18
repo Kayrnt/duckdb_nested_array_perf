@@ -4,20 +4,20 @@
     )
 }}
 {%- call set_sql_header(config) %}
-SET memory_limit = '15GB';
+-- SET memory_limit = '15GB';
 PRAGMA temp_directory='/tmp/tmp.tmp';
 {%- endcall %}
 {%- set rows_count = 10 ** var('exponent_scale') %}
 WITH 
 all_rows AS (
   SELECT
-    GENERATE_SERIES(1, {{ rows_count }}) AS id
+    UNNEST(GENERATE_SERIES(1, {{ rows_count }})) AS id
 ),
 array_id_int AS (
   SELECT 
-      id,
+      CAST(id AS INTEGER) id,
       CAST(CAST(id AS INTEGER) % CAST({{ var('array_size_max') }} AS INTEGER) AS INTEGER) array_size,
-      GENERATE_SERIES(0, array_size, 1) array_sample
+      GENERATE_SERIES(1, array_size, 1) array_sample
   FROM all_rows
 )
 SELECT

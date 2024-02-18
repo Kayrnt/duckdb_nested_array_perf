@@ -5,9 +5,10 @@
 }}
 
 {% call set_sql_header(config) %}
-PRAGMA enable_profiling;
-SET enable_profiling = 'json';
-SET enable_profiling = 'query_tree_optimizer';
+-- PRAGMA enable_profiling;
+-- SET enable_profiling = 'json';
+-- SET enable_profiling = 'query_tree_optimizer';
+PRAGMA temp_directory='/tmp/tmp.tmp';
 {% endcall %}
 
 SELECT
